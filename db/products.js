@@ -1,10 +1,13 @@
 const express = require('express');
-const app = express();
+const router = express.router();
 
 const products = { name: "Product Name", price: "$10.00", inventory: "Inventory" };
 
-app.get('/products', (req, res) => {
+router.get('/products', (req, res) => {
   res.json(products);
 });
 
-module.exports = app;
+module.exports = router;
+
+
+//Need router.GET and things here
