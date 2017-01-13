@@ -1,4 +1,4 @@
-const product = require('../products');
+const products = require('../routes/products');
 const supertest = require('supertest');
 const chai = require ('chai');
 chai.should();
