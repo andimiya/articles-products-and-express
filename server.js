@@ -1,13 +1,24 @@
 const express = require('express');
 const products = require('./routes/products');
-console.log(products);
+const handlebars = require('express-handlebars');
 const app = express();
+const bodyParser = require('body-parser');
 
+//bodyparser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
+//Mount Products
 app.use('/products', products);
-//Mount the products here using app.use(Products)
+// console.log(products);
 
-// app.engine('hbs', h)
+//handlebars
+const hbs = handlebars.create({
+  extname: '.hbs',
+  defaultLayout: 'app'
+});
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
 
 // module.exports = products;
 module.exports = app;
