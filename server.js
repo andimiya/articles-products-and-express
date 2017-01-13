@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Mount Products
 app.use('/products', products);
-// console.log(products);
 
 //handlebars
 const hbs = handlebars.create({
