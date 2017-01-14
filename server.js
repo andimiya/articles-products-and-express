@@ -4,6 +4,8 @@ const handlebars = require('express-handlebars');
 const app = express();
 const bodyParser = require('body-parser');
 
+const idCounter = { id: 0 };
+
 //bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,5 +21,5 @@ const hbs = handlebars.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-// module.exports = products;
 module.exports = app;
+

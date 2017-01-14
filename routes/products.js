@@ -2,19 +2,10 @@ const express = require('express');
 const ProductsDb = require('../db/products');
 const router = express.Router();
 const server = require('../server');
+// const index = require('../templates/index.hbs');
 
 let postArray = [];
 let productId = 0;
-
-// //ID Counter??
-// app.get('/api/counter', (req, res) => {
-//   res.json(counter);
-// });
-
-// app.get('/api/counter/increment', (req, res) => {
-//   counter.count++;
-//   res.json(counter);
-// });
 
 
 router.post('/', (req,res) => {
@@ -22,7 +13,7 @@ router.post('/', (req,res) => {
   req.body.id = productId++;
   console.log(postArray);
 
-  res.send('Post test');
+  // res.send(index);
   res.end('end');
 });
 
@@ -31,6 +22,22 @@ router.get('/', (req,res) => {
   res.send('GET test');
   res.end('end');
 });
+
+router.put('/', (req, res) => {
+
+  // If req.body.id matches an id in the postArray collection
+  // Then replace that objects name property to be the new req.body.name value
+  //
+
+
+  res.end('end');
+});
+
+router.delete('/', (req, res) => {
+  //if req.body.id matches an id in the postArray collection
+  //Then delete that entire object
+});
+
 
 
 module.exports = router;
