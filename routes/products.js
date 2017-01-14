@@ -2,13 +2,16 @@ const express = require('express');
 const products = require('../db/products');
 const router = express.Router();
 const server = require('../server');
+const methodOverride = require('method-override');
+
+router.use(methodOverride('X-HTTP-Method-Override'));
+
 
 let productsArray = [];
 let productId = 0;
 
 
 router.get('/', (req,res) => {
-  res.send('GET test');
   res.end('end');
 });
 
@@ -37,10 +40,6 @@ router.put('/', (req, res) => {
 
   let newId = Number(req.body.id);
 
-  // console.log('newId', typeof newId);
-  // console.log('productsArrayId', typeof productsArray[1].id);
-
-
   for (var i = 0; i < productsArray.length; i++){
 
     if (productsArray[i].id === newId) {
@@ -60,7 +59,7 @@ router.put('/', (req, res) => {
   // Then replace that objects name property to be the new req.body.name value
   //
 
-  res.end('end');
+  // res.end('end');
 });
 
 router.delete('/:id', (req, res) => {
