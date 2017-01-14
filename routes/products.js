@@ -2,9 +2,11 @@ const express = require('express');
 const ProductsDb = require('../db/products');
 const router = express.Router();
 
+const postArray = [];
 
 router.post('/', (req,res) => {
-  console.log(req.body);
+  postArray.push(req.body);
+  console.log(postArray);
   res.send('Post test');
   res.end('end');
 });
