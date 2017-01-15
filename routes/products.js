@@ -9,30 +9,13 @@ const server = require('../server');
 let productsArray = [];
 let productId = 0;
 
-
 router.get('/', (req,res) => {
-  res.json({message: 'get message'});
+  res.render('products/index', productsArray);
 });
 
-router.post('/', (req,res) => {
-  let newProduct = req.body;
-
-  if (res.status(200)){
-    productsArray.push(newProduct);
-    newProduct.id = productId++;
-    console.log(productsArray);
-    res.json({ Message: "Product Added" });
-    // res.redirect('/products');
-  }
-  else {
-    console.log('error');
-    // res.redirect('/products/new');
-  }
+router.get('/new', (req,res) => {
+  res.render('products/product');
 });
-
-// If req.body.id matches an id in the postArray collection
-  // Then replace that objects name property to be the new req.body.name value
-  //
 
 router.get('/:id', (req,res) => {
 
@@ -51,6 +34,47 @@ router.get('/:id', (req,res) => {
   }
     res.render('products/product');
 });
+
+router.get('/:id/edit', (req,res) => {
+
+  let reqId = parseInt(req.params.id);
+
+  for (var i = 0; i < productsArray.length; i++){
+
+    if (productsArray[i].id === reqId) {
+      console.log('found');
+      return res.json(products);
+    }
+    else {
+      console.log('not found');
+      return res.send('error');
+    }
+  }
+    res.render('products/edit');
+});
+
+router.post('/', (req,res) => {
+  let newProduct = req.body;
+  // let productName = req.query.name;
+  // let productPrice = req.query.price;
+  // let productInventory = req.query.inventory;
+
+  if (res.status(200)){
+    productsArray.push(newProduct);
+    newProduct.id = productId++;
+    console.log(productsArray);
+    res.redirect('/products');
+  }
+  else {
+    console.log('error');
+    res.render('/products/error');
+    res.redirect('/products/new');
+  }
+});
+
+// If req.body.id matches an id in the postArray collection
+  // Then replace that objects name property to be the new req.body.name value
+  //
 
 router.put('/:id', (req, res) => {
 
