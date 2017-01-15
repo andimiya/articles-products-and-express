@@ -1,5 +1,6 @@
 const express = require('express');
 const products = require('./routes/products');
+const articles = require('./routes/articles');
 const handlebars = require('express-handlebars');
 const app = express();
 const bodyParser = require('body-parser');
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Mount Products
 app.use('/products', products);
+app.use('/articles', articles);
 
 //handlebars
 const hbs = handlebars.create({
