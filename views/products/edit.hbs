@@ -3,13 +3,13 @@
 
 <form action="/products" method="post">
   Product Name:<br>
-  <input type="text" name="name" value="{{products.name}}">
+  <input type="text" name="name" value="{{product.name}}">
   <br>
   Product Price:<br>
-  <input type="text" name="price">
+  <input type="text" name="price" value="{{product.price}}">
   <br>
   Inventory:<br>
-  <input type="text" name="inventory">
+  <input type="text" name="inventory" value="{{product.inventory}}">
   <br>
   <input type="submit">
 </form>

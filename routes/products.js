@@ -48,7 +48,9 @@ router.get('/:id/edit', (req,res) => {
     }
   }
   if (products !== null) {
-  res.render('products/edit', {"prods": products});
+  let prodTemp = {product};
+  console.log(prodTemp);
+  res.render('products/edit', {product});
   }
 });
 
