@@ -48,8 +48,6 @@ router.get('/:id/edit', (req,res) => {
     }
   }
   if (products !== null) {
-  let prodTemp = {product};
-  console.log(prodTemp);
   res.render('products/edit', {product});
   }
 });

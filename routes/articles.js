@@ -14,40 +14,38 @@ router.get('/new', (req,res) => {
   res.render('articles/new');
 });
 
-router.get('/:id', (req,res) => {
+router.get('/:title', (req,res) => {
 
-  let reqId = parseInt(req.params.id);
-  console.log(reqId);
+  let reqTitle = req.params.title;
   let article = null;
 
   for (var i = 0; i < articlesArray.length; i++){
-    if (articlesArray[i].id === reqId) {
+    if (String(articlesArray[i].title) === reqTitle) {
       article = articlesArray[i];
     }
   }
   if (article !== null) {
-    res.render('articles/article', {"articles": [articles]});
+    res.render('articles/article', {"articles": [article]});
   }
   else {
     return res.send('error');
   }
 });
 
-router.get('/:id/edit', (req,res) => {
+router.get('/:title/edit', (req,res) => {
 
-  let reqId = parseInt(req.params.id);
+  let reqTitle = req.params.title;
   let article = null;
 
   for (var i = 0; i < articlesArray.length; i++){
-    if (articlesArray[i].id === reqId) {
+    if (String(articlesArray[i].title) === reqTitle) {
       article = articlesArray[i];
     }
   }
   if (article !== null) {
-  res.render('articles/edit', {"articles": articles});
+  res.render('articles/edit', {article});
   }
 });
-
 
 router.post('/', (req,res) => {
   let newArticle = req.body;
@@ -67,17 +65,19 @@ router.post('/', (req,res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:title', (req, res) => {
 
   console.log('req url', req.params.id);
 
   let newArticle = req.body;
-  let reqId = parseInt(req.params.id);
+  let reqTitle = req.params.title;
+  console.log('reqTitle', reqTitle);
+  console.log('articles Array Title', articlesArray[0].title);
 
   let article = null;
 
   for (var i = 0; i < articlesArray.length; i++){
-    if (articlesArray[i].id === reqId) {
+    if (articlesArray[i].title === reqTitle) {
       article = articlesArray[i];
     }
   }
@@ -95,7 +95,7 @@ router.put('/:id', (req, res) => {
 });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:title', (req, res) => {
   let newId = String(req.params.id);
 
   for (var i = 0; i < articlesArray.length; i++) {
