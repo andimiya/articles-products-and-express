@@ -22,12 +22,11 @@ router.post('/', (req,res) => {
   productsArray.push(newProduct);
   newProduct.id = productId++;
   console.log(productsArray);
-  // console.log(productsArray[0].id, 'productsArray1 ID');
-  res.redirect('/products');
+  res.redirect('/');
   }
   else {
   console.log('error');
-  res.redirect('/products/new');
+  res.redirect('/new');
   }
 });
 
@@ -37,7 +36,6 @@ router.put('/', (req, res) => {
   let newProduct = req.body;
   let newProductName = req.body.name;
   let newProductPrice = req.body.price;
-
   let newId = Number(req.body.id);
 
   for (var i = 0; i < productsArray.length; i++){
@@ -46,11 +44,14 @@ router.put('/', (req, res) => {
       console.log('found');
       productsArray[i].name = newProductName;
       productsArray[i].price = newProductPrice;
-      res.redirect('/products/:id');
+      res.end('end');
+      return;
+      // res.redirect('/:id');
     }
     else {
       console.log('not found');
-      res.redirect('/products/:id/edit');
+      res.end('end');
+      // res.redirect('/:id/edit');
     }
   }
 
@@ -62,7 +63,23 @@ router.put('/', (req, res) => {
   // res.end('end');
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/', (req, res) => {
+  let newId = Number(req.body.id);
+
+  console.log('productsArray i ', productsArray[1]);
+
+  for (var i = 0; i < productsArray.length; i++) {
+    if (productsArray[i].id === newId) {
+      productsArray.splice(i, 1);
+      console.log(productsArray);
+      res.end('end');
+    }
+    else{
+      console.log('error');
+    }
+    // res.redirect(303, '/products');
+  }
+
   //if req.body.id matches an id in the postArray collection
   //Then delete that entire object
 });
