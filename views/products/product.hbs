@@ -1,4 +1,4 @@
-<h1>Product Template</h1>
+</h1>New Product Template</h1>
 
 <form action="/products" method="post">
   Product Name:<br>
@@ -8,8 +8,18 @@
   <input type="text" name="price">
   <br>
   Inventory:<br>
-  <input type="number" name="inventory">
+  <input type="text" name="inventory">
   <br>
   <input type="submit">
 </form>
 
+
+<h1>List of Products</h1>
+
+{{#each prods}}
+  <div class = "products">
+    <p>Product Name: {{name}}<br>
+    Price: ${{price}}<br>
+    Inventory: {{inventory}}
+    </p>
+{{/each}}

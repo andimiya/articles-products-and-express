@@ -1,3 +1,6 @@
+
+
+
 // module.exports = (function(){
 //   // ... functions declared and private variables?!
 //   var productList = [];

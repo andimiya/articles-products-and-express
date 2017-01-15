@@ -10,11 +10,12 @@ let productsArray = [];
 let productId = 0;
 
 router.get('/', (req,res) => {
-  res.render('products/index', productsArray);
+  res.render('products/product', {"prods": productsArray});
+
 });
 
 router.get('/new', (req,res) => {
-  res.render('products/product');
+  res.render('products/new');
 });
 
 router.get('/:id', (req,res) => {
@@ -55,14 +56,11 @@ router.get('/:id/edit', (req,res) => {
 
 router.post('/', (req,res) => {
   let newProduct = req.body;
-  // let productName = req.query.name;
-  // let productPrice = req.query.price;
-  // let productInventory = req.query.inventory;
 
   if (res.status(200)){
     productsArray.push(newProduct);
     newProduct.id = productId++;
-    console.log(productsArray);
+    let prods =
     res.redirect('/products');
   }
   else {
