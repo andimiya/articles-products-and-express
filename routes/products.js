@@ -6,7 +6,6 @@ const server = require('../server');
 
 // router.use(methodOverride('X-HTTP-Method-Override'));
 
-
 let productsArray = [];
 let productId = 0;
 
@@ -15,7 +14,6 @@ router.get('/', (req,res) => {
   res.json({message: 'get message'});
 });
 
-
 router.post('/', (req,res) => {
   let newProduct = req.body;
 
@@ -23,51 +21,74 @@ router.post('/', (req,res) => {
     productsArray.push(newProduct);
     newProduct.id = productId++;
     console.log(productsArray);
-    res.redirect('/');
-    res.end();
+    res.json({ Message: "Product Added" });
+    // res.redirect('/products');
   }
   else {
     console.log('error');
-    res.redirect('/new');
+    // res.redirect('/products/new');
   }
 });
-
-
 
 // If req.body.id matches an id in the postArray collection
   // Then replace that objects name property to be the new req.body.name value
   //
 
-router.put('/:id', (req, res) => {
+router.get('/:id', (req,res) => {
 
-  let newProduct = req.body;
-  let newProductName = req.body.name;
-  let newProductPrice = req.body.price;
-  let newId = Number(req.body.id);
+  let reqId = parseInt(req.params.id);
 
   for (var i = 0; i < productsArray.length; i++){
 
-    if (productsArray[i].id === newId) {
+    if (productsArray[i].id === reqId) {
       console.log('found');
-      productsArray[i].name = newProductName;
-      productsArray[i].price = newProductPrice;
-      res.send('success');
-      // res.redirect('/:id');
+      return res.json(products);
     }
     else {
       console.log('not found');
       return res.send('error');
-      // res.redirect('/:id/edit');
     }
+  }
+    res.render('products/product');
+});
+
+router.put('/:id', (req, res) => {
+
+  console.log('req url', req.params.id);
+
+  let newProduct = req.body;
+  let newProductName = req.body.name;
+  let newProductPrice = req.body.price;
+  let reqId = parseInt(req.params.id);
+
+  console.log(typeof productsArray[1]);
+
+  let product = null;
+
+  for (var i = 0; i < productsArray.length; i++){
+
+    if (productsArray[i].id === reqId) {
+      product = productsArray[i];
+    }
+  }
+  if (product !== null){
+    product.name = newProductName;
+    product.price = newProductPrice;
+    res.json( {Message: "Product Edited"} );
+    // res.redirect(303, `/products/${newID}`);
+  }
+
+  else {
+      console.log('not found');
+      res.send('error');
+      // res.redirect('/:id/edit');
   }
 
 });
 
 
 router.delete('/:id', (req, res) => {
-  let newId = Number(req.body.id);
-
-  console.log('productsArray i ', productsArray[1]);
+  let newId = String(req.params.id);
 
   for (var i = 0; i < productsArray.length; i++) {
     if (productsArray[i].id === newId) {
