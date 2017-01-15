@@ -21,29 +21,32 @@ router.get('/new', (req,res) => {
 router.get('/:id', (req,res) => {
 
   let reqId = parseInt(req.params.id);
+  console.log(reqId);
+  let products = null;
 
   for (var i = 0; i < productsArray.length; i++){
-
     if (productsArray[i].id === reqId) {
-      console.log('found');
-      return res.json(products);
-    }
-    else {
-      console.log('not found');
-      return res.send('error');
+      products = productsArray[i];
     }
   }
-    res.render('products/product');
+  if (products !== null) {
+    console.log('found');
+    console.log({"prods": [products]});
+    res.render('products/product', {"prods": [products]});
+  }
+  else {
+    return res.send('error');
+  }
 });
 
 router.get('/:id/edit', (req,res) => {
 
   let reqId = parseInt(req.params.id);
+  let product = null;
 
   for (var i = 0; i < productsArray.length; i++){
-
     if (productsArray[i].id === reqId) {
-      console.log('found');
+      product = productsArray[i];
       return res.json(products);
     }
     else {
@@ -53,6 +56,7 @@ router.get('/:id/edit', (req,res) => {
   }
     res.render('products/edit');
 });
+
 
 router.post('/', (req,res) => {
   let newProduct = req.body;
@@ -79,8 +83,6 @@ router.put('/:id', (req, res) => {
   console.log('req url', req.params.id);
 
   let newProduct = req.body;
-  let newProductName = req.body.name;
-  let newProductPrice = req.body.price;
   let reqId = parseInt(req.params.id);
 
   console.log(typeof productsArray[1]);
@@ -88,7 +90,6 @@ router.put('/:id', (req, res) => {
   let product = null;
 
   for (var i = 0; i < productsArray.length; i++){
-
     if (productsArray[i].id === reqId) {
       product = productsArray[i];
     }
@@ -99,13 +100,11 @@ router.put('/:id', (req, res) => {
     res.json( {Message: "Product Edited"} );
     // res.redirect(303, `/products/${newID}`);
   }
-
   else {
       console.log('not found');
       res.send('error');
       // res.redirect('/:id/edit');
   }
-
 });
 
 
