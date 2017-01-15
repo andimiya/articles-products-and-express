@@ -22,16 +22,14 @@ router.get('/:id', (req,res) => {
 
   let reqId = parseInt(req.params.id);
   console.log(reqId);
-  let products = null;
+  let product = null;
 
   for (var i = 0; i < productsArray.length; i++){
     if (productsArray[i].id === reqId) {
-      products = productsArray[i];
+      product = productsArray[i];
     }
   }
-  if (products !== null) {
-    console.log('found');
-    console.log({"prods": [products]});
+  if (product !== null) {
     res.render('products/product', {"prods": [products]});
   }
   else {
@@ -47,14 +45,11 @@ router.get('/:id/edit', (req,res) => {
   for (var i = 0; i < productsArray.length; i++){
     if (productsArray[i].id === reqId) {
       product = productsArray[i];
-      return res.json(products);
-    }
-    else {
-      console.log('not found');
-      return res.send('error');
     }
   }
-    res.render('products/edit');
+  if (products !== null) {
+  res.render('products/edit', {"prods": products});
+  }
 });
 
 
@@ -84,8 +79,6 @@ router.put('/:id', (req, res) => {
 
   let newProduct = req.body;
   let reqId = parseInt(req.params.id);
-
-  console.log(typeof productsArray[1]);
 
   let product = null;
 

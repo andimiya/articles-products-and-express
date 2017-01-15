@@ -1,7 +1,27 @@
-<form>
-  Edit Product Name:<br>
-  <input type="text" name="productname">
+
+</h1>Edit Product</h1>
+
+<form action="/products" method="post">
+  Product Name:<br>
+  <input type="text" name="name" value="{{products.name}}">
   <br>
-  Edit Product Price:<br>
-  <input type="text" name="productprice">
+  Product Price:<br>
+  <input type="text" name="price">
+  <br>
+  Inventory:<br>
+  <input type="text" name="inventory">
+  <br>
+  <input type="submit">
 </form>
+
+{{!--
+<h1>List of Products</h1>
+
+{{#each prods}}
+  <div class = "products">
+    <p>Product Name: {{name}}<br>
+    Price: ${{price}}<br>
+    Inventory: {{inventory}}
+    </p>
+{{/each}} --}}
+
