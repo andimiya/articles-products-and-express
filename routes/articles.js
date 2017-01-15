@@ -2,9 +2,6 @@ const express = require('express');
 const articles = require('../db/articles');
 const router = express.Router();
 const server = require('../server');
-// const methodOverride = require('method-override');
-
-// router.use(methodOverride('X-HTTP-Method-Override'));
 
 let articlesArray = [];
 let articleId = 0;
@@ -69,10 +66,6 @@ router.post('/', (req,res) => {
     res.redirect('/articles/new');
   }
 });
-
-// If req.body.id matches an id in the postArray collection
-  // Then replace that objects name property to be the new req.body.name value
-  //
 
 router.put('/:id', (req, res) => {
 
