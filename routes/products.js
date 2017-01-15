@@ -2,9 +2,9 @@ const express = require('express');
 const products = require('../db/products');
 const router = express.Router();
 const server = require('../server');
-const methodOverride = require('method-override');
+// const methodOverride = require('method-override');
 
-router.use(methodOverride('X-HTTP-Method-Override'));
+// router.use(methodOverride('X-HTTP-Method-Override'));
 
 
 let productsArray = [];
@@ -12,26 +12,33 @@ let productId = 0;
 
 
 router.get('/', (req,res) => {
-  res.end('end');
+  res.json({message: 'get message'});
 });
+
 
 router.post('/', (req,res) => {
   let newProduct = req.body;
 
   if (res.status(200)){
-  productsArray.push(newProduct);
-  newProduct.id = productId++;
-  console.log(productsArray);
-  res.redirect('/');
+    productsArray.push(newProduct);
+    newProduct.id = productId++;
+    console.log(productsArray);
+    res.redirect('/');
+    res.end();
   }
   else {
-  console.log('error');
-  res.redirect('/new');
+    console.log('error');
+    res.redirect('/new');
   }
 });
 
 
-router.put('/', (req, res) => {
+
+// If req.body.id matches an id in the postArray collection
+  // Then replace that objects name property to be the new req.body.name value
+  //
+
+router.put('/:id', (req, res) => {
 
   let newProduct = req.body;
   let newProductName = req.body.name;
@@ -44,26 +51,20 @@ router.put('/', (req, res) => {
       console.log('found');
       productsArray[i].name = newProductName;
       productsArray[i].price = newProductPrice;
-      res.end('end');
-      return;
+      res.send('success');
       // res.redirect('/:id');
     }
     else {
       console.log('not found');
-      res.end('end');
+      return res.send('error');
       // res.redirect('/:id/edit');
     }
   }
 
-
-  // If req.body.id matches an id in the postArray collection
-  // Then replace that objects name property to be the new req.body.name value
-  //
-
-  // res.end('end');
 });
 
-router.delete('/', (req, res) => {
+
+router.delete('/:id', (req, res) => {
   let newId = Number(req.body.id);
 
   console.log('productsArray i ', productsArray[1]);
