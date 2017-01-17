@@ -55,7 +55,7 @@ router.post('/', (req,res) => {
   if (res.status(200)){
     articlesArray.push(newArticle);
     newArticle.urlTitle = urlEncode;
-    let articles =
+    console.log(articlesArray);
     res.redirect('/articles');
   }
   else {
@@ -66,24 +66,23 @@ router.post('/', (req,res) => {
 });
 
 router.put('/:title', (req, res) => {
-
-  console.log('req url', req.params.id);
-
-  let newArticle = req.body;
-  let reqTitle = req.params.title;
-  console.log('reqTitle', reqTitle);
-  console.log('articles Array Title', articlesArray[0].title);
-
   let article = null;
+  let reqTitle = req.params.title;
+  let newTitle = req.body.title;
+  let newBody = req.body.body;
+  let newAuthor = req.body.author;
 
   for (var i = 0; i < articlesArray.length; i++){
-    if (articlesArray[i].title === reqTitle) {
+    if (String(articlesArray[i].title) === reqTitle) {
       article = articlesArray[i];
     }
   }
   if (article !== null){
-    article.name = newArticleName;
-    article.price = newArticlePrice;
+    console.log(req.body, 'reqparams');
+    article.title = newTitle;
+    article.body = newBody;
+    article.author = newAuthor;
+    console.log(articlesArray);
     res.json( {Message: "Article Edited"} );
     // res.redirect(303, `/products/${newID}`);
   }
@@ -94,23 +93,16 @@ router.put('/:title', (req, res) => {
   }
 });
 
-
 router.delete('/:title', (req, res) => {
-  let newId = String(req.params.id);
-
+  let reqTitle = req.params.title;
   for (var i = 0; i < articlesArray.length; i++) {
-    if (articlesArray[i].id === newId) {
+    if (String(articlesArray[i].title) === reqTitle) {
       articlesArray.splice(i, 1);
       console.log(articlesArray);
-      res.end('end');
     }
-    else{
-      console.log('error');
-    }
-    // res.redirect(303, '/products');
   }
+  res.render('articles/article', {"articles": articlesArray});
+  res.redirect(303, '/articles');
 });
-
-
 
 module.exports = router;

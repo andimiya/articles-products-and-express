@@ -22,4 +22,13 @@
     Body: ${{body}}<br>
     Author: {{author}}
     </p>
+  <div>
+
+  <form action="/articles" method="delete">
+    <input type="submit" value="Delete">
+  </form>
+  <form action="/articles" method="edit">
+    <input type="submit" value="Edit">
+  </form>
 {{/each}}
+
