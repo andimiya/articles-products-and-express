@@ -2,9 +2,12 @@ const express = require('express');
 const articles = require('../db/articles');
 const router = express.Router();
 const server = require('../server');
+const methodOverride = require('method-override');
 
 let articlesArray = [];
 let articleId = 0;
+
+router.use(methodOverride('_method'));
 
 router.get('/', (req,res) => {
   res.render('articles/article', {"articles": articlesArray});
@@ -78,13 +81,12 @@ router.put('/:title', (req, res) => {
     }
   }
   if (article !== null){
-    console.log(req.body, 'reqparams');
     article.title = newTitle;
     article.body = newBody;
     article.author = newAuthor;
-    console.log(articlesArray);
-    res.json( {Message: "Article Edited"} );
-    // res.redirect(303, `/products/${newID}`);
+    console.log('new Title', req.body.title);
+    console.log('articlesArray', articlesArray);
+    res.redirect(303, `/articles/${newTitle}`);
   }
   else {
       console.log('not found');

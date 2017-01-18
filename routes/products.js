@@ -2,12 +2,12 @@ const express = require('express');
 const products = require('../db/products');
 const router = express.Router();
 const server = require('../server');
-// const methodOverride = require('method-override');
-
-// router.use(methodOverride('X-HTTP-Method-Override'));
+const methodOverride = require('method-override');
 
 let productsArray = [];
 let productId = 0;
+
+router.use(methodOverride('X-HTTP-Method-Override'));
 
 router.get('/', (req,res) => {
   res.render('products/product', {"prods": productsArray});
@@ -68,10 +68,6 @@ router.post('/', (req,res) => {
     res.redirect('/products/new');
   }
 });
-
-// If req.body.id matches an id in the postArray collection
-  // Then replace that objects name property to be the new req.body.name value
-  //
 
 router.put('/:id', (req, res) => {
 

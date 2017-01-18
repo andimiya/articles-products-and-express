@@ -19,15 +19,15 @@
 {{#each articles}}
   <div class = "articles">
     <p>Article Title: {{title}}<br>
-    Body: ${{body}}<br>
+    Body: {{body}}<br>
     Author: {{author}}
     </p>
   <div>
 
-  <form action="/articles" method="delete">
+  <form action="articles/{{title}}/edit" method="delete">
     <input type="submit" value="Delete">
   </form>
-  <form action="/articles" method="edit">
+  <form action="articles/{{title}}/edit" method="edit">
     <input type="submit" value="Edit">
   </form>
 {{/each}}

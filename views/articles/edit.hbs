@@ -1,9 +1,9 @@
 
 </h1>Edit Article</h1>
 
-<form action="/articles" method="post">
+<form action="/articles/{{article.title}}?_method=PUT" method="POST">
   Article Title:<br>
-  <input type="text" name="name" value="{{article.title}}">
+  <input type="text" name="title" value="{{article.title}}">
   <br>
   Body:<br>
   <input type="text" name="body" value="{{article.body}}">
@@ -14,20 +14,5 @@
   <input type="submit">
 </form>
 
-<h1>List of Articles</h1>
 
-{{#each articles}}
-  <div class = "articles">
-    <p>Article Title: {{title}}<br>
-    Body: ${{body}}<br>
-    Author: {{author}}
-    </p>
-  <div>
-
-  <form action="/articles" method="delete">
-    <input type="submit" value="Delete">
-  </form>
-  <form action="/articles" method="edit">
-    <input type="submit" value="Edit">
-  </form>
-{{/each}}
+{{!-- //method override --}}
