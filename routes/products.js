@@ -1,11 +1,10 @@
 const express = require('express');
-const products = require('../db/products');
 const router = express.Router();
 const server = require('../server');
 const methodOverride = require('method-override');
 
-let productsArray = [];
 let productId = 0;
+let productsArray = require('../db/products');
 
 router.use(methodOverride('_method'));
 
@@ -46,11 +45,10 @@ router.get('/:id/edit', (req,res) => {
       product = productsArray[i];
     }
   }
-  if (products !== null) {
+  if (product !== null) {
   res.render('products/edit', {product});
   }
 });
-
 
 router.post('/', (req,res) => {
   let newProduct = req.body;
@@ -62,8 +60,6 @@ router.post('/', (req,res) => {
     res.redirect('/products');
   }
   else {
-    console.log('error');
-    res.render('/products/error');
     res.redirect('/products/new');
   }
 });
@@ -93,9 +89,7 @@ router.put('/:id', (req, res) => {
     res.redirect(303, `/products`);
   }
   else {
-      console.log('not found');
-      res.send('error');
-      // res.redirect('/:id/edit');
+    res.redirect(303, `/products/${reqId}/edit`);
   }
 });
 

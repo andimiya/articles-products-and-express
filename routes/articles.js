@@ -4,7 +4,7 @@ const router = express.Router();
 const server = require('../server');
 const methodOverride = require('method-override');
 
-let articlesArray = [];
+let articlesArray = require('../db/products');
 let articleId = 0;
 
 router.use(methodOverride('_method'));
@@ -62,8 +62,6 @@ router.post('/', (req,res) => {
     res.redirect('/articles');
   }
   else {
-    console.log('error');
-    res.render('/articles/error');
     res.redirect('/articles/new');
   }
 });
