@@ -1,7 +1,7 @@
 
 </h1>Edit Product</h1>
 
-<form action="/products" method="post">
+<form action="/products/{{product.id}}?_method=PUT" method="POST">
   Product Name:<br>
   <input type="text" name="name" value="{{product.name}}">
   <br>
@@ -13,15 +13,3 @@
   <br>
   <input type="submit">
 </form>
-
-{{!--
-<h1>List of Products</h1>
-
-{{#each prods}}
-  <div class = "products">
-    <p>Product Name: {{name}}<br>
-    Price: ${{price}}<br>
-    Inventory: {{inventory}}
-    </p>
-{{/each}} --}}
-

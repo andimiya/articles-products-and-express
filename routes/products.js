@@ -7,11 +7,10 @@ const methodOverride = require('method-override');
 let productsArray = [];
 let productId = 0;
 
-router.use(methodOverride('X-HTTP-Method-Override'));
+router.use(methodOverride('_method'));
 
 router.get('/', (req,res) => {
   res.render('products/product', {"prods": productsArray});
-
 });
 
 router.get('/new', (req,res) => {
@@ -75,6 +74,10 @@ router.put('/:id', (req, res) => {
 
   let newProduct = req.body;
   let reqId = parseInt(req.params.id);
+  let newName = req.body.name;
+  let newPrice = req.body.price;
+  let newInventory = req.body.inventory;
+
 
   let product = null;
 
@@ -84,10 +87,10 @@ router.put('/:id', (req, res) => {
     }
   }
   if (product !== null){
-    product.name = newProductName;
-    product.price = newProductPrice;
-    res.json( {Message: "Product Edited"} );
-    // res.redirect(303, `/products/${newID}`);
+    product.name = newName;
+    product.price = newPrice;
+    product.inventory = newInventory;
+    res.redirect(303, `/products`);
   }
   else {
       console.log('not found');
@@ -98,24 +101,16 @@ router.put('/:id', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-  let newId = String(req.params.id);
+  let reqId = parseInt(req.params.id);
 
   for (var i = 0; i < productsArray.length; i++) {
-    if (productsArray[i].id === newId) {
+    if (productsArray[i].id === reqId) {
       productsArray.splice(i, 1);
       console.log(productsArray);
-      res.end('end');
     }
-    else{
-      console.log('error');
-    }
-    // res.redirect(303, '/products');
   }
-
-  //if req.body.id matches an id in the postArray collection
-  //Then delete that entire object
+  res.redirect(303, '/products');
 });
-
 
 
 module.exports = router;
