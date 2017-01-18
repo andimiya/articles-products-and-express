@@ -1,25 +1,25 @@
-// const products = require('../routes/products');
-// const supertest = require('supertest');
-// const chai = require ('chai');
-// chai.should();
+const products = require('../routes/products');
+const supertest = require('supertest');
+const chai = require ('chai');
+chai.should();
 
-// const agent = supertest.agent(products);
+const agent = supertest.agent(products);
 
-// describe ('Articles POST', () => {
+describe ('Products POST', () => {
+  const endpoint = '/products';
+  describe(`GET ${endpoint}`, () => {
 
-//   describe('GET /api/articles', () => {
+    it('should return the products page', done => {
+      agent.get(endpoint)
+      .expect('Content-Type', /html/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) throw err;
+        console.log('res', res);
+        res.text.should.be.equal('<html><body><h1>Hello API Server</h1></body></html>');
+        done();
+      });
+    });
+  });
 
-//     it('should return a product', done => {
-//       agent.get('/api/articles')
-//       .expect('Content-Type', /json/)
-//       .expect(200)
-//       .end((err, res) => {
-//         if (err) throw err;
-
-//         console.log('res.body', res.body);
-//         done();
-//       });
-//     });
-//   });
-
-// });
+});
