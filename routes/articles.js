@@ -86,7 +86,7 @@ router.put('/:title', (req, res) => {
     article.author = newAuthor;
     console.log('new Title', req.body.title);
     console.log('articlesArray', articlesArray);
-    res.redirect(303, `/articles/${newTitle}`);
+    res.redirect(303, `/articles`);
   }
   else {
       console.log('not found');
