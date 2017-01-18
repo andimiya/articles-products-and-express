@@ -103,7 +103,7 @@ router.delete('/:title', (req, res) => {
       console.log(articlesArray);
     }
   }
-  res.render('articles/article', {"articles": articlesArray});
+  // res.render('articles', {"articles": articlesArray});
   res.redirect(303, '/articles');
 });
 
