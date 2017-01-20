@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const server = require('../server');
 const methodOverride = require('method-override');
 
 let productId = 0;

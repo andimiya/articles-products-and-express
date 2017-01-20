@@ -1,7 +1,6 @@
 const express = require('express');
 const articles = require('../db/articles');
 const router = express.Router();
-const server = require('../server');
 const methodOverride = require('method-override');
 
 let articlesArray = require('../db/products');
