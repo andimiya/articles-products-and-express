@@ -10,5 +10,6 @@ CREATE TABLE article (
   author VARCHAR
 );
 
+-- SEED DATA
 INSERT INTO article (title, body, author)
   VALUES ('Title DbEntry', 'Body Text DbEntry', 'Author DbEntry');

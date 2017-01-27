@@ -3,10 +3,14 @@ const articles = require('../db/articles');
 const router = express.Router();
 const methodOverride = require('method-override');
 
-let articlesArray = require('../db/products');
+let articlesArray = require('../db/articles');
 let articleId = 0;
 
+let db = require('../db/postgres');
+
 router.use(methodOverride('_method'));
+
+router.get('/api/articles', db.getAllArticles);
 
 router.get('/', (req,res) => {
   res.render('articles/article', {"articles": articlesArray});
