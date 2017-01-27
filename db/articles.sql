@@ -10,5 +10,5 @@ CREATE TABLE article (
   author VARCHAR
 );
 
-INSERT INTO pups (name, breed, age, sex)
-  VALUES ('Tyler', 'Retrieved', 3, 'M');
+INSERT INTO article (title, body, author)
+  VALUES ('Title DbEntry', 'Body Text DbEntry', 'Author DbEntry');
