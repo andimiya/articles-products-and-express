@@ -14,7 +14,7 @@ router.get('/api/articles', (req, res) => {
   db.getAllArticles()
   .then( articles =>  {
     console.log(articles);
-    res.render('articles/new', articles);
+    res.render('articles/new', {"articles": articles} );
 
   } );
 });
@@ -23,9 +23,13 @@ router.get('/api/articles', (req, res) => {
 //   res.render('articles/article', {"articles": articlesArray});
 // });
 
-// router.get('/new', (req,res) => {
-//   res.render('articles/new');
-// });
+router.get('/new', (req,res) => {
+  db.getAllArticles()
+  .then( articles =>  {
+    console.log('article console', articles);
+    res.render('articles/new', {"articles": articles} );
+  } );
+});
 
 // router.get('/:title', (req,res) => {
 

@@ -7,13 +7,14 @@ const database = pgp({
   host: 'localhost',
   port: 5432,
   database: 'articles_db',
-  user: 'article_user',
+  user: 'articles_user',
   password: PG_PASS
 
 });
 
 const getAllArticles = () => {
-    return database.any('SELECT * FROM articles');
+    console.log('test');
+    return database.query('SELECT * FROM article');
 };
 
 
