@@ -3,16 +3,17 @@
 const PG_PASS = process.env.PG_PASS;
 const pgp = require('pg-promise')();
 
-const db = pgp({
+const database = pgp({
   host: 'localhost',
   port: 5432,
   database: 'articles_db',
   user: 'article_user',
   password: PG_PASS
+
 });
 
 const getAllArticles = () => {
-    return db.any('SELECT * FROM articles');
+    return database.any('SELECT * FROM articles');
 };
 
 
