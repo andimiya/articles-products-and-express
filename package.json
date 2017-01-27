@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/andimiya/articles-products-and-express#readme",
   "dependencies": {
+    "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
-    "method-override": "^2.3.7"
+    "method-override": "^2.3.7",
+    "pg-promise": "^5.5.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
