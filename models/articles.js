@@ -13,8 +13,7 @@ const database = pgp({
 });
 
 const getAllArticles = () => {
-    console.log('test');
-    return database.query('SELECT * FROM article');
+    return database.any('SELECT * FROM article');
 };
 
 

@@ -10,18 +10,13 @@ let db = require('../models/articles');
 
 router.use(methodOverride('_method'));
 
-router.get('/api/articles', (req, res) => {
+router.get('/', (req,res) => {
   db.getAllArticles()
   .then( articles =>  {
-    console.log(articles);
-    res.render('articles/new', {"articles": articles} );
-
+    console.log('article console', articles);
+    res.render('articles/article', {"articles": articles});
   } );
 });
-
-// router.get('/', (req,res) => {
-//   res.render('articles/article', {"articles": articlesArray});
-// });
 
 router.get('/new', (req,res) => {
   db.getAllArticles()
