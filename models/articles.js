@@ -13,8 +13,12 @@ const database = pgp({
 });
 
 const getAllArticles = () => {
-    return database.any('SELECT * FROM article');
+  return database.any('SELECT * FROM article');
 };
+
+const addNewArticle = () => {
+  //FILL IN STUFF HERE
+}
 
 
 

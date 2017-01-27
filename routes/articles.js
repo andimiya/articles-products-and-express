@@ -26,6 +26,29 @@ router.get('/new', (req,res) => {
   } );
 });
 
+router.post('/', (req,res) => {
+  db.addNewArticle(title, body, author)
+  .then ( articles => {
+    res.redirect('/articles');
+  } );
+});
+
+  // let newArticle = req.body;
+  // let urlEncode = encodeURIComponent(String(req.body.title));
+  // console.log(urlEncode);
+
+  // if (res.status(200)){
+  //   articlesArray.push(newArticle);
+  //   newArticle.urlTitle = urlEncode;
+  //   console.log(articlesArray);
+  //   res.redirect('/articles');
+  // }
+  // else {
+  //   res.redirect('/articles/new');
+  // }
+
+
+
 // router.get('/:title', (req,res) => {
 
 //   let reqTitle = req.params.title;
@@ -59,21 +82,6 @@ router.get('/new', (req,res) => {
 //   }
 // });
 
-// router.post('/', (req,res) => {
-//   let newArticle = req.body;
-//   let urlEncode = encodeURIComponent(String(req.body.title));
-//   console.log(urlEncode);
-
-//   if (res.status(200)){
-//     articlesArray.push(newArticle);
-//     newArticle.urlTitle = urlEncode;
-//     console.log(articlesArray);
-//     res.redirect('/articles');
-//   }
-//   else {
-//     res.redirect('/articles/new');
-//   }
-// });
 
 // router.put('/:title', (req, res) => {
 //   let article = null;
