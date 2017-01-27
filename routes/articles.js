@@ -6,11 +6,14 @@ const methodOverride = require('method-override');
 let articlesArray = require('../db/articles');
 let articleId = 0;
 
-let db = require('../db/postgres');
+let db = require('../models/articles');
 
 router.use(methodOverride('_method'));
 
-router.get('/api/articles', db.getAllArticles);
+router.get('/api/articles', (req, res) => {
+  db.getAllArticles()
+  .then ( )
+});
 
 router.get('/', (req,res) => {
   res.render('articles/article', {"articles": articlesArray});
