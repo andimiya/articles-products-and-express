@@ -41,26 +41,17 @@ router.get('/:title', (req, res) => {
   .then ( articles => {
 
     console.log('article title', req.params.title);
-    res.render('articles/article', {"articles": articles});
+    res.render(`articles/${req.params.title}`, {"articles": articles});
   } );
 });
-// router.get('/:title', (req,res) => {
 
-//   let reqTitle = req.params.title;
-//   let article = null;
+router.get('/:title/edit', (req, res) => {
+  db.getArticleByTitletoEdit(req.params.title)
+  .then ( articles => {
+    res.render(`articles/edit`, {articles});
+  } );
+});
 
-//   for (var i = 0; i < articlesArray.length; i++){
-//     if (String(articlesArray[i].title) === reqTitle) {
-//       article = articlesArray[i];
-//     }
-//   }
-//   if (article !== null) {
-//     res.render('articles/article', {"articles": [article]});
-//   }
-//   else {
-//     return res.send('error');
-//   }
-// });
 
 // router.get('/:title/edit', (req,res) => {
 

@@ -12,10 +12,10 @@
     <input type="submit" value="Add New Article">
   </form>
 
-  <form action="articles/{{title}}?_method=DELETE" method="POST">
+  <form action="articles/{{articles.title}}?_method=DELETE" method="POST">
     <input type="submit" value="Delete">
   </form>
-  <form action="articles/{{title}}/edit" method="edit">
+  <form action="articles/df/edit" method="edit">
     <input type="submit" value="Edit">
   </form>
 {{/each}}

@@ -20,12 +20,17 @@ const addNewArticle = (title, body, author) => {
   return database.any(`INSERT INTO article (title, body, author) VALUES ('${title}', '${body}', '${author}')`);
 };
 
-const getArticleByTitle = () => {
-  return database.any(`SELECT * FROM article WHERE title = 'df'`);
+const getArticleByTitle = (title) => {
+  return database.any(`SELECT * FROM article WHERE title = '${title}'`);
+};
+
+const getArticleByTitletoEdit = (title) => {
+  return database.any(`SELECT * FROM article WHERE title = '${title}'`);
 };
 
 module.exports = {
   getAllArticles: getAllArticles,
   addNewArticle: addNewArticle,
-  getArticleByTitle: getArticleByTitle
+  getArticleByTitle: getArticleByTitle,
+  getArticleByTitletoEdit: getArticleByTitletoEdit
 };
