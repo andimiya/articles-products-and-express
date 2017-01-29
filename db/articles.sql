@@ -12,9 +12,10 @@ CREATE TABLE article (
   ID SERIAL PRIMARY KEY,
   title VARCHAR,
   body VARCHAR,
-  author VARCHAR
+  author VARCHAR,
+  urlTitle VARCHAR NULL
 );
 
 -- SEED DATA
-INSERT INTO article (title, body, author)
-  VALUES ('Title DbEntry', 'Body Text DbEntry', 'Author DbEntry');
+INSERT INTO article (title, body, author, urlTitle)
+  VALUES ('Title DbEntry', 'Body Text DbEntry', 'Author DbEntry', 'dfm');
