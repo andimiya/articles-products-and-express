@@ -1,0 +1,16 @@
+<h1>List of Products</h1>
+
+{{#each products}}
+  <div class = "products">
+    <p>Product Name: {{name}}<br>
+    Price: ${{price}}<br>
+    Inventory: {{inventory}}
+    </p>
+  <div>
+
+{{/each}}
+
+
+<form action="products/new" method="GET">
+  <input type="submit" value="Add New Product">
+</form>

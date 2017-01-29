@@ -8,7 +8,10 @@ let productsArray = require('../db/products');
 router.use(methodOverride('_method'));
 
 router.get('/', (req,res) => {
-  res.render('products/product', {"prods": productsArray});
+  db.getAllProducts()
+  .then( Products => {
+    res.render('products/index', {"prods": products});
+  });
 });
 
 router.get('/new', (req,res) => {
