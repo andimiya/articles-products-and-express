@@ -8,14 +8,9 @@
     </p>
   <div>
 
-  <form action="/articles/new" method="GET">
-    <input type="submit" value="Add New Article">
-  </form>
-
-  <form action="articles/{{title}}?_method=DELETE" method="POST">
-    <input type="submit" value="Delete">
-  </form>
-  <form action="articles/{{title}}/edit" method="edit">
-    <input type="submit" value="Edit">
-  </form>
 {{/each}}
+
+
+<form action="articles/new" method="GET">
+  <input type="submit" value="Add New Article">
+</form>

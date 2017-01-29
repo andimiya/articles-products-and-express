@@ -36,5 +36,6 @@ module.exports = {
   getAllArticles: getAllArticles,
   addNewArticle: addNewArticle,
   getArticleByTitle: getArticleByTitle,
-  getArticleByTitletoEdit: getArticleByTitletoEdit
+  getArticleByTitletoEdit: getArticleByTitletoEdit,
+  editArticle: editArticle
 };

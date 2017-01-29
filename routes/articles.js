@@ -16,10 +16,7 @@ router.get('/', (req,res) => {
 });
 
 router.get('/new', (req,res) => {
-  db.getAllArticles()
-  .then( articles =>  {
-    res.render('articles/new', {"articles": articles} );
-  } );
+  res.render('articles/new' );
 });
 
 router.post('/', (req,res) => {
@@ -31,7 +28,7 @@ router.post('/', (req,res) => {
   } );
 });
 
-router.get('/:title', (req, res) => {
+router.get(`/:title`, (req, res) => {
   // let reqTitle = req.body.title;
   // let article = null;
 
@@ -39,7 +36,7 @@ router.get('/:title', (req, res) => {
   .then ( articles => {
 
     console.log('article title', req.params.title);
-    res.render(`articles/${req.params.title}`, {"articles": articles});
+    res.render(`articles/article`, {"articles": articles});
   } );
 });
 
