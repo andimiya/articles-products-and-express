@@ -20,13 +20,13 @@ const addNewProduct = (name, price, inventory) => {
   return database.any(`INSERT INTO product_table (name, price, inventory) VALUES ('${name}', '${price}', '${inventory}')`);
 };
 
-// const getProductId = (id) => {
-//   return database.any(`SELECT id FROM product_table`);
-// };
+const getProductId = (id) => {
+  return database.any(`SELECT * FROM product_table WHERE id = '${id}'`);
+};
 
-// const getProductByNametoEdit = (name) => {
-//   return database.any(`SELECT * FROM product_table WHERE name = '${name}'`);
-// };
+const getProductByNametoEdit = (id) => {
+  return database.any(`SELECT * FROM product_table WHERE id = '${id}'`);
+};
 
 // const editProduct = (name, price, inventory) => {
 //   return database.any(`UPDATE product_table SET price = '${price}', inventory = '${inventory}' WHERE name = '${name}'`);
@@ -39,8 +39,8 @@ const addNewProduct = (name, price, inventory) => {
 module.exports = {
   getAllProducts: getAllProducts,
   addNewProduct: addNewProduct,
-  // getProductByName: getProductByName,
-  // getProductByNametoEdit: getProductByNametoEdit,
+  getProductId: getProductId,
+  getProductByNametoEdit: getProductByNametoEdit,
   // editProduct: editProduct,
   // deleteProduct: deleteProduct
 };

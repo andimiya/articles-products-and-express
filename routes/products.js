@@ -17,46 +17,22 @@ router.get('/', (req,res) => {
 });
 
 router.get('/new', (req,res) => {
-  // .then( products => {
   res.render('products/new');
-  // });
 });
 
 router.get('/:id', (req,res) => {
   db.getProductId(req.params.id)
   .then( products => {
+    console.log(req.params.id);
     res.render('products/product', {"products": products});
   });
-  // let reqId = parseInt(req.params.id);
-  // console.log(reqId);
-  // let product = null;
-
-  // for (var i = 0; i < productsArray.length; i++){
-  //   if (productsArray[i].id === reqId) {
-  //     product = productsArray[i];
-  //   }
-  // }
-  // if (product !== null) {
-  //   res.render('products/product', {"prods": [products]});
-  // }
-  // else {
-  //   return res.send('error');
-  // }
 });
 
 router.get('/:id/edit', (req,res) => {
-
-  let reqId = parseInt(req.params.id);
-  let product = null;
-
-  for (var i = 0; i < productsArray.length; i++){
-    if (productsArray[i].id === reqId) {
-      product = productsArray[i];
-    }
-  }
-  if (product !== null) {
-  res.render('products/edit', {product});
-  }
+  db.getProductByNametoEdit(req.params.id)
+  .then( products => {
+    res.render('products/edit', {products});
+  });
 });
 
 router.post('/', (req,res) => {
