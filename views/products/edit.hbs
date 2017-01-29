@@ -1,14 +1,18 @@
- </h1>Edit Product</h1>
+{{#each product_table}}
 
-<form action="/products/{{product.id}}?_method=PUT" method="POST">
+</h1>Edit Product<h1>
+
+<form action="/products/{{id}}?_method=PUT" method="POST">
   Product Name:<br>
-  <input type="text" name="name" value="{{product.name}}">
+  <input type="text" name="name" value="{{name}}">
   <br>
   Product Price:<br>
-  <input type="text" name="price" value="{{product.price}}">
+  <input type="text" name="price" value="{{price}}">
   <br>
   Inventory:<br>
-  <input type="text" name="inventory" value="{{product.inventory}}">
+  <input type="text" name="inventory" value="{{inventory}}">
   <br>
   <input type="submit">
 </form>
+
+{{/each}}

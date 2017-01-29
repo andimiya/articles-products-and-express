@@ -5,36 +5,43 @@ const methodOverride = require('method-override');
 let productId = 0;
 let productsArray = require('../db/products');
 
+let db = require('../models/products');
+
 router.use(methodOverride('_method'));
 
 router.get('/', (req,res) => {
   db.getAllProducts()
-  .then( Products => {
-    res.render('products/index', {"prods": products});
+  .then( products => {
+    res.render('products/index', {"products": products});
   });
 });
 
 router.get('/new', (req,res) => {
+  // .then( products => {
   res.render('products/new');
+  // });
 });
 
 router.get('/:id', (req,res) => {
+  db.getProductId(req.params.id)
+  .then( products => {
+    res.render('products/product', {"products": products});
+  });
+  // let reqId = parseInt(req.params.id);
+  // console.log(reqId);
+  // let product = null;
 
-  let reqId = parseInt(req.params.id);
-  console.log(reqId);
-  let product = null;
-
-  for (var i = 0; i < productsArray.length; i++){
-    if (productsArray[i].id === reqId) {
-      product = productsArray[i];
-    }
-  }
-  if (product !== null) {
-    res.render('products/product', {"prods": [products]});
-  }
-  else {
-    return res.send('error');
-  }
+  // for (var i = 0; i < productsArray.length; i++){
+  //   if (productsArray[i].id === reqId) {
+  //     product = productsArray[i];
+  //   }
+  // }
+  // if (product !== null) {
+  //   res.render('products/product', {"prods": [products]});
+  // }
+  // else {
+  //   return res.send('error');
+  // }
 });
 
 router.get('/:id/edit', (req,res) => {
@@ -53,18 +60,13 @@ router.get('/:id/edit', (req,res) => {
 });
 
 router.post('/', (req,res) => {
-  let newProduct = req.body;
+  db.addNewProduct(req.body.name, req.body.price, req.body.inventory)
+    .then( products => {
+      res.redirect('/products');
+    } );
+  });
 
-  if (res.status(200)){
-    productsArray.push(newProduct);
-    newProduct.id = productId++;
-    let prods =
-    res.redirect('/products');
-  }
-  else {
-    res.redirect('/products/new');
-  }
-});
+
 
 router.put('/:id', (req, res) => {
 
