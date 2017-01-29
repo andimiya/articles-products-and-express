@@ -48,8 +48,9 @@ router.get('/:title/edit', (req, res) => {
 });
 
 router.put('/:title', (req, res) => {
-  db.editArticle(req.params.title, req.params.body, req.params.author);
-  res.redirect(303, '/articles');
+  db.editArticle(req.params.title, req.body.body, req.body.author);
+  console.log(req.params, 'req params console');
+  res.redirect('/articles');
 });
 
 // router.put('/:title', (req, res) => {
