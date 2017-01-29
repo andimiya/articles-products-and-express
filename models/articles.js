@@ -28,6 +28,10 @@ const getArticleByTitletoEdit = (title) => {
   return database.any(`SELECT * FROM article WHERE title = '${title}'`);
 };
 
+const editArticle = (title, body, author) => {
+  return database.any(`UPDATE article SET (title, body, author) = ('${title}', '${body}', '${author}'`);
+};
+
 module.exports = {
   getAllArticles: getAllArticles,
   addNewArticle: addNewArticle,

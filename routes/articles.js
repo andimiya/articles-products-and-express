@@ -1,9 +1,7 @@
 const express = require('express');
-// const articles = require('../db/articles');
 const router = express.Router();
 const methodOverride = require('method-override');
 
-// let articlesArray = require('../db/articles');
 let articleId = 0;
 
 let db = require('../models/articles');
@@ -52,22 +50,10 @@ router.get('/:title/edit', (req, res) => {
   } );
 });
 
-
-// router.get('/:title/edit', (req,res) => {
-
-//   let reqTitle = req.params.title;
-//   let article = null;
-
-//   for (var i = 0; i < articlesArray.length; i++){
-//     if (String(articlesArray[i].title) === reqTitle) {
-//       article = articlesArray[i];
-//     }
-//   }
-//   if (article !== null) {
-//   res.render('articles/edit', {article});
-//   }
-// });
-
+router.put('/:title', (req, res) => {
+  db.editArticle(req.params.title, req.params.body, req.params.author);
+  res.redirect(303, '/articles');
+});
 
 // router.put('/:title', (req, res) => {
 //   let article = null;
