@@ -27,8 +27,11 @@ router.get('/new', (req,res) => {
 });
 
 router.post('/', (req,res) => {
-  db.addNewArticle(title, body, author)
+  db.addNewArticle(req.body.title, req.body.body, req.body.author)
   .then ( articles => {
+    // let urlEncode = encodeURIComponent(String(req.body.title));
+    // newArticle.urlTitle = urlEncode;
+    console.log('article post', req.body);
     res.redirect('/articles');
   } );
 });
@@ -39,7 +42,6 @@ router.post('/', (req,res) => {
 
   // if (res.status(200)){
   //   articlesArray.push(newArticle);
-  //   newArticle.urlTitle = urlEncode;
   //   console.log(articlesArray);
   //   res.redirect('/articles');
   // }

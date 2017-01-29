@@ -16,16 +16,16 @@ const getAllArticles = () => {
   return database.any('SELECT * FROM article');
 };
 
-const addNewArticle = () => {
-  //FILL IN STUFF HERE
-}
+const addNewArticle = (title, body, author) => {
+  return database.any(`INSERT INTO article (title, body, author) VALUES ('${title}', '${body}', '${author}')`);
+};
 
 
 
 module.exports = {
-  getAllArticles: getAllArticles
-// //   // getSinglePuppy: getSinglePuppy,
-// //   // createPuppy: createPuppy,
+  getAllArticles: getAllArticles,
+  addNewArticle: addNewArticle
+  // //   // createPuppy: createPuppy,
 // //   // updatePuppy: updatePuppy,
 // //   // removePuppy: removePuppy
 };
