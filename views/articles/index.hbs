@@ -1,20 +1,4 @@
-{{!-- </h1>New Article Template</h1>
-
-<form action="/articles" method="post">
-  Article Title:<br>
-  <input type="text" name="title">
-  <br>
-  Body:<br>
-  <input type="text" name="body">
-  <br>
-  Author:<br>
-  <input type="text" name="author">
-  <br>
-  <input type="submit">
-</form>
- --}}
-
-<h1>Article Found</h1>
+<h1>List of Articles</h1>
 
 {{#each articles}}
   <div class = "articles">
@@ -23,6 +7,10 @@
     Author: {{author}}
     </p>
   <div>
+
+  <form action="/articles/new" method="GET">
+    <input type="submit" value="Add New Article">
+  </form>
 
   <form action="articles/{{title}}?_method=DELETE" method="POST">
     <input type="submit" value="Delete">

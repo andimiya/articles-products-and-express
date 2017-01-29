@@ -20,12 +20,12 @@ const addNewArticle = (title, body, author) => {
   return database.any(`INSERT INTO article (title, body, author) VALUES ('${title}', '${body}', '${author}')`);
 };
 
-
+const getArticleByTitle = () => {
+  return database.any(`SELECT * FROM article WHERE title = 'df'`);
+};
 
 module.exports = {
   getAllArticles: getAllArticles,
-  addNewArticle: addNewArticle
-  // //   // createPuppy: createPuppy,
-// //   // updatePuppy: updatePuppy,
-// //   // removePuppy: removePuppy
+  addNewArticle: addNewArticle,
+  getArticleByTitle: getArticleByTitle
 };

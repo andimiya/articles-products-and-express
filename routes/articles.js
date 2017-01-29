@@ -13,15 +13,13 @@ router.use(methodOverride('_method'));
 router.get('/', (req,res) => {
   db.getAllArticles()
   .then( articles =>  {
-    console.log('article console', articles);
-    res.render('articles/article', {"articles": articles});
+    res.render('articles/index', {"articles": articles});
   } );
 });
 
 router.get('/new', (req,res) => {
   db.getAllArticles()
   .then( articles =>  {
-    console.log('article console', articles);
     res.render('articles/new', {"articles": articles} );
   } );
 });
@@ -31,26 +29,21 @@ router.post('/', (req,res) => {
   .then ( articles => {
     // let urlEncode = encodeURIComponent(String(req.body.title));
     // newArticle.urlTitle = urlEncode;
-    console.log('article post', req.body);
     res.redirect('/articles');
   } );
 });
 
-  // let newArticle = req.body;
-  // let urlEncode = encodeURIComponent(String(req.body.title));
-  // console.log(urlEncode);
+router.get('/:title', (req, res) => {
+  // let reqTitle = req.body.title;
+  // let article = null;
 
-  // if (res.status(200)){
-  //   articlesArray.push(newArticle);
-  //   console.log(articlesArray);
-  //   res.redirect('/articles');
-  // }
-  // else {
-  //   res.redirect('/articles/new');
-  // }
+  db.getArticleByTitle(req.params.title)
+  .then ( articles => {
 
-
-
+    console.log('article title', req.params.title);
+    res.render('articles/article', {"articles": articles});
+  } );
+});
 // router.get('/:title', (req,res) => {
 
 //   let reqTitle = req.params.title;
