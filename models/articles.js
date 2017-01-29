@@ -30,7 +30,10 @@ const getArticleByTitletoEdit = (title) => {
 
 const editArticle = (title, body, author) => {
   return database.any(`UPDATE article SET body = '${body}', author = '${author}' WHERE title = '${title}'`);
+};
 
+const deleteArticle = (title) => {
+  return database.any(`DELETE FROM article WHERE title = '${title}'`);
 };
 
 module.exports = {
@@ -38,5 +41,6 @@ module.exports = {
   addNewArticle: addNewArticle,
   getArticleByTitle: getArticleByTitle,
   getArticleByTitletoEdit: getArticleByTitletoEdit,
-  editArticle: editArticle
+  editArticle: editArticle,
+  deleteArticle: deleteArticle
 };

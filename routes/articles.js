@@ -53,33 +53,10 @@ router.put('/:title', (req, res) => {
   res.redirect('/articles');
 });
 
-// router.put('/:title', (req, res) => {
-//   let article = null;
-//   let reqTitle = req.params.title;
-//   let newTitle = req.body.title;
-//   let newBody = req.body.body;
-//   let newAuthor = req.body.author;
-
-//   for (var i = 0; i < articlesArray.length; i++){
-//     if (String(articlesArray[i].title) === reqTitle) {
-//       article = articlesArray[i];
-//     }
-//   }
-//   if (article !== null){
-//     article.title = newTitle;
-//     article.body = newBody;
-//     article.author = newAuthor;
-//     console.log('new Title', req.body.title);
-//     console.log('articlesArray', articlesArray);
-//     res.redirect(303, `/articles`);
-//   }
-//   else {
-//       console.log('not found');
-//       res.send('error');
-//       // res.redirect('/:id/edit');
-//   }
-// });
-
+router.delete('/:title', (req, res) => {
+  db.deleteArticle(req.params.title);
+  res.redirect('/articles');
+});
 // router.delete('/:title', (req, res) => {
 //   let reqTitle = req.params.title;
 //   for (var i = 0; i < articlesArray.length; i++) {
