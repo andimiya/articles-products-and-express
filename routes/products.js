@@ -31,23 +31,24 @@ router.get('/:id', (req,res) => {
   .then( products => {
     console.log(req.params.id);
     res.render('products/product', {"products": products});
-  } );
+  });
 });
 
 router.get('/:id/edit', (req,res) => {
   db.getProductByNametoEdit(req.params.id)
   .then( products => {
+    console.log(products, 'id/edit');
     res.render('products/edit', {products});
   });
 });
 
 router.put('/:id', (req, res) => {
   db.editProduct(req.params.id, req.body.price, req.body.inventory);
-  res.redirect(303, `/products`);
+  res.redirect(`/products`);
 });
 
 router.delete('/:id', (req, res) => {
-  db.deleteProduct(req.params.title);
+  db.deleteProduct(req.params.id);
   res.redirect('/products');
 });
 
