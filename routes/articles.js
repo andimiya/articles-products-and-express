@@ -58,16 +58,5 @@ router.delete('/:title', (req, res) => {
   db.deleteArticle(req.params.title);
   res.redirect('/articles');
 });
-// router.delete('/:title', (req, res) => {
-//   let reqTitle = req.params.title;
-//   for (var i = 0; i < articlesArray.length; i++) {
-//     if (String(articlesArray[i].title) === reqTitle) {
-//       articlesArray.splice(i, 1);
-//       console.log(articlesArray);
-//     }
-//   }
-//   // res.render('articles', {"articles": articlesArray});
-//   res.redirect(303, '/articles');
-// });
 
 module.exports = router;

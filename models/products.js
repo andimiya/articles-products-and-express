@@ -28,19 +28,19 @@ const getProductByNametoEdit = (id) => {
   return database.any(`SELECT * FROM product_table WHERE id = '${id}'`);
 };
 
-// const editProduct = (name, price, inventory) => {
-//   return database.any(`UPDATE product_table SET price = '${price}', inventory = '${inventory}' WHERE name = '${name}'`);
-// };
+const editProduct = (id, price, inventory) => {
+  return database.any(`UPDATE product_table SET price = '${price}', inventory = '${inventory}' WHERE id = '${id}'`);
+};
 
-// const deleteProduct = (name) => {
-//   return database.any(`DELETE FROM product_table WHERE name = '${name}'`);
-// };
+const deleteProduct = (id) => {
+  return database.any(`DELETE FROM product_table WHERE id = '${id}'`);
+};
 
 module.exports = {
   getAllProducts: getAllProducts,
   addNewProduct: addNewProduct,
   getProductId: getProductId,
   getProductByNametoEdit: getProductByNametoEdit,
-  // editProduct: editProduct,
-  // deleteProduct: deleteProduct
+  editProduct: editProduct,
+  deleteProduct: deleteProduct
 };
