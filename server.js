@@ -11,6 +11,9 @@ const idCounter = { id: 0 };
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(express.static('public'));
+
+
 //Mount Products
 app.use('/products', products);
 app.use('/articles', articles);

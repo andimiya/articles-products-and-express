@@ -31,7 +31,7 @@ router.get('/:id', (req,res) => {
   .then( products => {
     console.log(req.params.id);
     res.render('products/product', {"products": products});
-  });
+  } );
 });
 
 router.get('/:id/edit', (req,res) => {

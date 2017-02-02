@@ -34,8 +34,6 @@ router.get(`/:title`, (req, res) => {
 
   db.getArticleByTitle(req.params.title)
   .then ( articles => {
-
-    console.log('article title', req.params.title);
     res.render(`articles/article`, {"articles": articles});
   } );
 });
@@ -50,7 +48,6 @@ router.get('/:title/edit', (req, res) => {
 router.put('/:title', (req, res) => {
   db.editArticle(req.params.title, req.body.body, req.body.author);
   req.params.title = encodeURIComponent(req.params.title);
-  console.log(req.params.title, 'req params console');
   res.redirect(`/articles`);
 });
 
