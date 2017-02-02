@@ -21,13 +21,18 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
+    "browser-sync": "^2.18.7",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^3.1.0",
     "method-override": "^2.3.7",
     "pg-promise": "^5.5.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
     "handlebars-helper-css": "^0.1.0",
     "mocha": "^3.2.0",
     "supertest": "^2.0.1"
